@@ -19,7 +19,6 @@ app.get('/top', function (req, res) {
          var dataTo = s.name + '[MARY]' + s.magnetLink;
          var xx = JSON.stringify(dataTo);
          toSend.push(xx);
-         console.log(toSend);
        })
      )
   .catch(err => console.log(err))
