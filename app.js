@@ -4,6 +4,7 @@ var PirateBay = require('thepiratebay')
 
 var express = require('express');
 var app = express();
+var port = process.env.PORT || 1337;
 
 app.use(express.static('public'))
 
@@ -48,6 +49,6 @@ engine.on('ready', function() {
 });
 })
 
-app.listen(1337, function () {
-  console.log('Magic happening on port 1337');
+app.listen(port, function () {
+  console.log('Magic happening on port ' + port);
 })

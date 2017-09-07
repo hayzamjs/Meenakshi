@@ -4,7 +4,7 @@
   "description": "A torrent stream utility",
   "main": "app.js",
   "scripts": {
-    "test": "start"
+    "start": "node app.js"
   },
   "author": "Hayzam Sherif",
   "license": "ISC",
