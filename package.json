@@ -1,0 +1,16 @@
+{
+  "name": "meenakshi",
+  "version": "0.0.1",
+  "description": "A torrent stream utility",
+  "main": "app.js",
+  "scripts": {
+    "test": "start"
+  },
+  "author": "Hayzam Sherif",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.4",
+    "thepiratebay": "^1.4.5",
+    "torrent-stream": "^1.0.3"
+  }
+}

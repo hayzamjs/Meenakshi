@@ -1,0 +1,30 @@
+<html>
+<head>
+  <title>
+      Meenakshi Movies!
+  </title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script>
+$.getJSON("/top", function(data, status){
+
+  var returnedData = JSON.parse(data);
+  delete returnedData[0];
+  for(s in returnedData){
+
+  var resq = returnedData[s].split("[MARY]");
+  var streamLink = '/streamMagnet/' + btoa(resq[1]);
+  var toAppend = '<a href="' + streamLink +'">'+ resq[0] +'</a><br>';
+
+  $("#movies").append(toAppend);
+  }
+      });
+  </script>
+</head>
+
+<body>
+
+<div id="movies">
+</div>
+
+</body>
+</html>
