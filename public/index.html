@@ -3,28 +3,108 @@
   <title>
       Meenakshi Movies!
   </title>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <style>
+  html,body {
+  width :100%;
+  height:100%;
+  margin:0;
+  padding:0;
+}
+  </style>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script>
-$.getJSON("/top", function(data, status){
+function first(){
 
-  var returnedData = JSON.parse(data);
-  delete returnedData[0];
-  for(s in returnedData){
-
-  var resq = returnedData[s].split("[MARY]");
-  var streamLink = '/streamMagnet/' + btoa(resq[1]);
-  var toAppend = '<a href="' + streamLink +'">'+ resq[0] +'</a><br>';
-
-  $("#movies").append(toAppend);
-  }
-      });
+  var magnetInput = document.getElementById('magnetMan').value;
+  window.location.href='/stream.html?magnet=' + btoa(magnetInput);
+}
   </script>
 </head>
 
 <body>
+  <video poster="assets/polina.jpg" id="bgvid" playsinline autoplay muted loop>
+  <source src="assets/polina.webm" type="video/webm">
+  <source src="assets/polina.mp4" type="video/mp4">
+  </video>
+  <style>
+  .container {
+  display:grid;
+  height:125%;
+}
+#toCenter {
+margin:auto;
+color:white;
+}
+.searchbutton {
+  color: #757070;
+  background-color: #BAB7BD;
+  border-color: #000000;
+}
 
-<div id="movies">
+.searchbutton:hover,
+.searchbutton:focus,
+.searchbutton:active,
+.searchbutton.active,
+.open .dropdown-toggle.searchbutton {
+  color: #757070;
+  background-color: #3E3B42;
+  border-color: #000000;
+}
+
+.searchbutton:active,
+.searchbutton.active,
+.open .dropdown-toggle.searchbutton {
+  background-image: none;
+}
+
+.searchbutton.disabled,
+.searchbutton[disabled],
+fieldset[disabled] .searchbutton,
+.searchbutton.disabled:hover,
+.searchbutton[disabled]:hover,
+fieldset[disabled] .searchbutton:hover,
+.searchbutton.disabled:focus,
+.searchbutton[disabled]:focus,
+fieldset[disabled] .searchbutton:focus,
+.searchbutton.disabled:active,
+.searchbutton[disabled]:active,
+fieldset[disabled] .searchbutton:active,
+.searchbutton.disabled.active,
+.searchbutton[disabled].active,
+fieldset[disabled] .searchbutton.active {
+  background-color: #BAB7BD;
+  border-color: #000000;
+}
+
+.searchbutton .badge {
+  color: #BAB7BD;
+  background-color: #757070;
+}
+  </style>
+<div class="container">
+  <form>
+    <style>
+input[type="text"]{
+background-color:#595959;
+color:white;
+}
+    </style>
+    <div id="toCenter">
+      <center>
+      <h1>Meenakshi ♥ </h1>
+    <div class="form-group">
+      <input class="form-control" id="magnetMan" type="text" placeholder="Enter magnet link here and press stream button below <3">
+      <br>
+      <button type = "button" class = "btn btn-default" onclick="first();">Stream</button>
+
+    </div>
+    <img src="assets/p.png"></img>
+  </center>
+    </div>
+  </form>
 </div>
-
 </body>
 </html>
