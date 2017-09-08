@@ -16,6 +16,13 @@ node app.js
 ```
 The application will be visible at http://localhost:1337 <3
 
+### Todo
+
+- [ ] Change stream without restarting server.
+- [ ] Better UX for the video page.
+- [ ] Support more video formats.
+
+
 1KQjSY5nRYrAx9dVA7CxkXFb5H6h3Ed8ZD
 
 ^ buy me coffee, send me btc's <3 <3
