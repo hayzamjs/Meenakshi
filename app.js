@@ -1,5 +1,4 @@
 var torrentStream = require('torrent-stream');
-var PirateBay = require('thepiratebay')
 
 
 var express = require('express');
