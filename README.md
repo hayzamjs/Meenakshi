@@ -20,7 +20,7 @@ The application will be visible at http://localhost:1337 <3
 
 - [ ] Change stream without restarting server.
 - [ ] Better UX for the video page.
-- [X] Support more video formats.(MKV works on chrome now)
+- [ ] Support more video formats.(MKV works on chrome now)(Make all formats work on all browsers)
 
 
 1KQjSY5nRYrAx9dVA7CxkXFb5H6h3Ed8ZD
