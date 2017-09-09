@@ -13,7 +13,9 @@
 
 var streamLink = 'http://localhost:1337/streamMagnet/' + finalMagnet;
 function closeStreamView() {
-	window.location.href = '/';
+  $.ajax({url: "http://localhost:1337/endstream", success: function(result){
+    window.location.href = '/';
+    }});
 }
 </script>
 </head>
