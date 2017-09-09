@@ -1,5 +1,7 @@
 var torrentStream = require('torrent-stream');
 
+var engine = {};
+
 var express = require('express');
 var app = express();
 var port = process.env.PORT || 1337;
@@ -9,7 +11,7 @@ app.use(express.static('public'))
 app.get('/streamMagnet/:magnet', function (req, res) {
 console.log('Starting new stream');
 var decoded = new Buffer(req.params.magnet, 'base64').toString('ascii')
-var engine = torrentStream(decoded);
+engine = torrentStream(decoded);
 
 engine.on('ready', function() {
     engine.files.forEach(function(file) {
@@ -24,6 +26,12 @@ engine.on('ready', function() {
     });
 });
 })
+
+app.get('/endstream', function(req, res) {
+	engine.destroy(function() {
+		res.send('sucess');
+	});
+});
 
 app.listen(port, function () {
   console.log('Meenakshi running on port ' + port);

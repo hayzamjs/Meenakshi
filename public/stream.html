@@ -11,12 +11,19 @@
 
  var streamLink = 'http://localhost:1337/streamMagnet/' + finalMagnet;
 
-  </script>
+var streamLink = 'http://localhost:1337/streamMagnet/' + finalMagnet;
+function closeStreamView() {
+  $.ajax({url: "http://localhost:1337/endstream", success: function(result){
+    window.location.href = '/';
+    }});
+}
+</script>
 </head>
 
 <body bgcolor="black">
 
 <center>
+  <img alt="close-button" class="close-btn" src="assets/ic_close_white_24px.svg" onclick="closeStreamView()"/>
 
 <div id="movie">
 <video src="" height="600" width="500" id="myVideo" controls autoplay></video>
@@ -28,4 +35,10 @@ var vid = document.getElementById("myVideo");
         vid.load();
 </script>
 </body>
+<style>
+.close-btn{
+  float: right;
+  cursor: pointer;
+}
+</style>
 </html>
