@@ -19,7 +19,7 @@ engine.on('ready', function() {
   			file.createReadStream().pipe(res);
 		    }
         else{
-          console.log('File not streamable.');
+          //Do nothing as it as unstreamable file.
         }
     });
 });
