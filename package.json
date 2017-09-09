@@ -10,7 +10,6 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.15.4",
-    "thepiratebay": "^1.4.5",
     "torrent-stream": "^1.0.3"
   }
 }

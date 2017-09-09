@@ -1,6 +1,4 @@
 var torrentStream = require('torrent-stream');
-var PirateBay = require('thepiratebay')
-
 
 var express = require('express');
 var app = express();
@@ -17,20 +15,16 @@ engine.on('ready', function() {
     engine.files.forEach(function(file) {
 	var containMKV = file.name.includes('.mkv');
 	var containMP4 = file.name.includes('.mp4');
-
-        if(containMP4 == true) {
-
-	  		res.setHeader("Content-Type", "video/mp4");
+        if(containMP4 == true || containMKV == true) {
   			file.createReadStream().pipe(res);
-		}
-    else if(containMKV == true) {
-          res.setHeader("Content-Type", "video/x-matroska");
-          file.createReadStream().pipe(res);
-    }
+		    }
+        else{
+          console.log('File not streamable.');
+        }
     });
 });
 })
 
 app.listen(port, function () {
-  console.log('Magic happening on port ' + port);
+  console.log('Meenakshi running on port ' + port);
 })
