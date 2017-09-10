@@ -21,7 +21,7 @@ The application will be visible at http://localhost:1337 <3
 ### Todo
 
 - [X] Change stream without restarting server. [Thank you Liptoon <3]
-- [ ] Better UX for the video page.
+- [X] Better UX for the video page.
 - [ ] Support more video formats.(MKV works on chrome now)(Make all formats work on all browsers)
 
 
