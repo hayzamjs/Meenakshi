@@ -6,36 +6,49 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script>
 
- var cURL = window.location.search;
- var finalMagnet = cURL.replace('?magnet=','');
+var cURL = window.location.search;
+var finalMagnet = cURL.replace('?magnet=','');
 
- var streamLink = 'http://localhost:1337/streamMagnet/' + finalMagnet;
+var streamLink = 'http://localhost:1337/streamMagnet/' + finalMagnet;
 
 var getVideo = new Promise((resolve, reject) => {
-   console.log("start getvideo");
-   $.ajax({
-     url: "/get-videos/"+finalMagnet,
-   }).done(function(response) {
-     resolve(response);
-   }).fail(function(response) {
-     reject("error: "+response.responseText);
-   })
- });
-
- getVideo.then(function(videoList) {
-  $(".loader").hide();
-  $("#loading-message").hide();
-
-  videoList.forEach(function(video) {
-    $("#all-videos").append("<div class='video'>"+video+"</div>");
+  console.log("start getvideo");
+  $.ajax({
+   url: "/get-videos/"+finalMagnet,
+  }).done(function(response) {
+   resolve(response);
+  }).fail(function(response) {
+   reject("error: "+response.responseText);
   });
+});
 
- });
 
- $(".video").on("click", function() {
-  console.log("Clicked");
-  console.log($(this).html());
- });
+
+
+$(function() {
+   getVideo.then(function(videoList) {
+    $(".loader").hide();
+    $("#loading-message").hide();
+    $("#choose-video").show();
+    videoList.forEach(function(video) {
+      $("#all-videos").append("<div class='video'>"+video+"</div>");
+    });
+
+   });
+
+   $("#choose-videos").on("click", ".video", function() {
+      var videoTitle = $(this).html();
+      streamLink += "/"+btoa(videoTitle);
+      vid.src = streamLink;
+      vid.load();
+      $("#show-video").show();
+      $("#choose-videos").fadeOut();
+   });
+
+  var vid = document.getElementById("myVideo");
+  // vid.src = streamLink;
+  // vid.load();
+});
 
 function chooseVideo(title) {
   console.log(title);
@@ -51,6 +64,15 @@ function closeStreamView() {
 
 <body bgcolor="black">
 
+  <div id="show-video">
+    <img alt="close-button" class="close-btn" src="assets/ic_close_white_24px.svg" onclick="closeStreamView()"/>
+    <center>
+      <div id="movie">
+        <video src="" height="600" width="500" id="myVideo" controls autoplay></video>
+      </div>
+    </center>
+  </div>
+
   <div id="choose-videos">
     <center>
       <div class="loader"></div>
@@ -61,27 +83,16 @@ function closeStreamView() {
     </div>
   </div>
 
-  <div id="show-video">
-    <img alt="close-button" class="close-btn" src="assets/ic_close_white_24px.svg" onclick="closeStreamView()"/>
-    <center>
-      <div id="movie">
-        <video src="" height="600" width="500" id="myVideo" controls autoplay></video>
-      </div>
-    </center>
-  </div>
 
 </body>
 
 <footer>
   <script>
-  var vid = document.getElementById("myVideo");
-          vid.src = streamLink;
-          // vid.load();
+    
   </script>
   <style>
-    video,
     #all-videos,
-    .close-btn,
+    #show-video,
     #choose-videos h2 {
       display:none;
     }
