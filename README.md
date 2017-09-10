@@ -7,6 +7,8 @@ A torrent-stream based video streaming application, the opensource alternative t
 
 ![alt text](https://i.imgur.com/O0LrLaz.jpg "1")
 
+![alt text2](https://i.imgur.com/F5wxo5G.jpg "2")
+
 ## How to install and run?
 
 Run the following commands and you'll be good to go!
