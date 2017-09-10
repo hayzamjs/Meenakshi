@@ -25,7 +25,21 @@ var getVideo = new Promise((resolve, reject) => {
  getVideo.then(function(videoList) {
   $(".loader").hide();
   $("#loading-message").hide();
+
+  videoList.forEach(function(video) {
+    $("#all-videos").append("<div class='video'>"+video+"</div>");
+  });
+
  });
+
+ $(".video").on("click", function() {
+  console.log("Clicked");
+  console.log($(this).html());
+ });
+
+function chooseVideo(title) {
+  console.log(title);
+}
 
 function closeStreamView() {
   $.ajax({url: "http://localhost:1337/endstream", success: function(result){
@@ -41,6 +55,7 @@ function closeStreamView() {
     <center>
       <div class="loader"></div>
       <div id="loading-message">Loading Your Video Titles...</div>
+      <h2>Please Choose The Video You Want To Watch</h2>
     </center>
     <div id="all-videos">
     </div>
@@ -66,30 +81,40 @@ function closeStreamView() {
   <style>
     video,
     #all-videos,
-    .close-btn {
+    .close-btn,
+    #choose-videos h2 {
       display:none;
-
     }
 
     .close-btn{
       float: right;
       cursor: pointer;
-      
     }
 
     #all-videos {
       display:flex;
-      columns:4;
+      justify-content:space-between;
+      -webkit-flex-flow: row wrap;
+      flex-flow: column wrap;
+      margin:20px 0;
+
     }
 
     #all-videos .video {
-      width:10%;
-      border-radius:3px;
-      border:1px solid #111;
-      background-color:#333;
-      box-shadow: inset 0px 0px 10px 10px #222;
-      padding:10px;
-      box-sizing:border-box;
+      width: 90%;
+      border-radius: 3px;
+      border: 1px solid #111;
+      background-color: #777;
+      box-shadow: inset 0px 0px 30px 2px #999;
+      padding: 10px 20px;
+      box-sizing: border-box;
+      cursor: pointer;
+      color: white;
+      margin: 0 auto;
+    }
+
+    #all-videos .video:hover {
+      box-shadow:inset 0px 0px 50px 5px #AAA;
     }
 
     #loading-message {

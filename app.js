@@ -8,6 +8,23 @@ var port = process.env.PORT || 1337;
 
 app.use(express.static('public'))
 
+app.get('/get-videos/:magnet', function(req, res) {
+
+  var decoded = new Buffer(req.params.magnet, 'base64').toString('ascii')
+  var filesArray = [];
+  engine = torrentStream(decoded);
+  console.log("created get video engine");
+  engine.on('ready', function() {
+      engine.files.forEach(function(file) {
+          filesArray.push(file.name);
+      });
+      console.log("filesarray");
+      console.log(filesArray);
+      res.send(filesArray);
+  });
+  
+});
+
 app.get('/streamMagnet/:magnet', function (req, res) {
 console.log('Starting new stream');
 var decoded = new Buffer(req.params.magnet, 'base64').toString('ascii')
