@@ -6,12 +6,52 @@
   <link rel="stylesheet" type="text/css" href="css/style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script>
+
  var cURL = window.location.search;
  var finalMagnet = cURL.replace('?magnet=','');
 
  var streamLink = 'http://localhost:1337/streamMagnet/' + finalMagnet;
 
-var streamLink = 'http://localhost:1337/streamMagnet/' + finalMagnet;
+var getVideo = new Promise((resolve, reject) => {
+  console.log("start getvideo");
+  $.ajax({
+   url: "/get-videos/"+finalMagnet,
+  }).done(function(response) {
+   resolve(response);
+  }).fail(function(response) {
+   reject("error: "+response.responseText);
+  });
+});
+
+$(function() {
+   getVideo.then(function(videoList) {
+    $(".loader").hide();
+    $("#loading-message").hide();
+    $("#choose-video").show();
+    videoList.forEach(function(video) {
+      $("#all-videos").append("<div class='video'>"+video+"</div>");
+    });
+
+   });
+
+   $("#choose-videos").on("click", ".video", function() {
+      var videoTitle = $(this).html();
+      streamLink += "/"+btoa(videoTitle);
+      vid.src = streamLink;
+      vid.load();
+      $("#show-video").show();
+      $("#choose-videos").fadeOut();
+   });
+
+  var vid = document.getElementById("myVideo");
+  // vid.src = streamLink;
+  // vid.load();
+});
+
+function chooseVideo(title) {
+  console.log(title);
+}
+
 function closeStreamView() {
   $.ajax({url: "http://localhost:1337/endstream", success: function(result){
     window.location.href = '/';
@@ -21,6 +61,119 @@ function closeStreamView() {
 </head>
 
 <body background="assets/grey.png">
+
+  <div id="show-video">
+    <img alt="close-button" class="close-btn" src="assets/ic_close_white_24px.svg" onclick="closeStreamView()"/>
+    <center>
+      <div id="movie">
+        <video src="" height="600" width="500" id="myVideo" controls autoplay></video>
+      </div>
+    </center>
+  </div>
+
+  <div id="choose-videos">
+    <center>
+      <div class="loader"></div>
+      <div id="loading-message">Loading Your Video Titles...</div>
+      <h2>Please Choose The Video You Want To Watch</h2>
+    </center>
+    <div id="all-videos">
+    </div>
+  </div>
+
+
+</body>
+
+<footer>
+  <script>
+    
+  </script>
+  <style>
+    #all-videos,
+    #show-video,
+    #choose-videos h2 {
+      display:none;
+    }
+
+    .close-btn{
+      float: right;
+      cursor: pointer;
+    }
+
+    #all-videos {
+      display:flex;
+      justify-content:space-between;
+      -webkit-flex-flow: row wrap;
+      flex-flow: column wrap;
+      margin:20px 0;
+
+    }
+
+    #all-videos .video {
+      width: 90%;
+      border-radius: 3px;
+      border: 1px solid #111;
+      background-color: #777;
+      box-shadow: inset 0px 0px 30px 2px #999;
+      padding: 10px 20px;
+      box-sizing: border-box;
+      cursor: pointer;
+      color: white;
+      margin: 0 auto;
+    }
+
+    #all-videos .video:hover {
+      box-shadow:inset 0px 0px 50px 5px #AAA;
+    }
+
+    #loading-message {
+      color:#FFF;
+    }
+
+    .loader,
+    .loader:after {
+      border-radius: 50%;
+      width: 10em;
+      height: 10em;
+      color:#FFF;
+    }
+    .loader {
+      margin: 60px auto;
+      font-size: 10px;
+      position: relative;
+      text-indent: -9999em;
+      border-top: 1.1em solid rgba(255, 255, 255, 0.2);
+      border-right: 1.1em solid rgba(255, 255, 255, 0.2);
+      border-bottom: 1.1em solid rgba(255, 255, 255, 0.2);
+      border-left: 1.1em solid #ffffff;
+      -webkit-transform: translateZ(0);
+      -ms-transform: translateZ(0);
+      transform: translateZ(0);
+      -webkit-animation: load8 1.1s infinite linear;
+      animation: load8 1.1s infinite linear;
+    }
+    @-webkit-keyframes load8 {
+      0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+      }
+      100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+      }
+    }
+    @keyframes load8 {
+      0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+      }
+      100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</footer>
 
 <center>
   <img alt="close-button" class="close-btn" src="assets/ic_close_white_24px.svg" onclick="closeStreamView()"/>
