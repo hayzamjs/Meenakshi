@@ -1,9 +1,13 @@
 # Meenakshi
 A torrent-stream based video streaming application, the opensource alternative to the now defunct joker.org!
 
+[![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/Meenakshi_/Lobby)
+
 ## Screenshot Time <3
 
 ![alt text](https://i.imgur.com/O0LrLaz.jpg "1")
+
+![alt text2](https://i.imgur.com/F5wxo5G.jpg "2")
 
 ## How to install and run?
 
@@ -19,7 +23,7 @@ The application will be visible at http://localhost:1337 <3
 ### Todo
 
 - [X] Change stream without restarting server. [Thank you Liptoon <3]
-- [ ] Better UX for the video page.
+- [X] Better UX for the video page.
 - [ ] Support more video formats.(MKV works on chrome now)(Make all formats work on all browsers)
 
 

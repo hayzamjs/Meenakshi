@@ -1,8 +1,16 @@
+html,body {
+width :100%;
+height:100%;
+margin:0;
+padding:0;
+}
+/*
 body {
   margin: 0;
   background: #000;
 }
-video {
+*/
+.videoPoster {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -65,6 +73,72 @@ a {
 a:hover{
   background:rgba(0,0,0,0.9);
 }
+.center {
+margin-right:auto; margin-left:auto;
+}
+.close-btn{
+  float: right;
+  cursor: pointer;
+}
+.container {
+display:grid;
+height:125%;
+}
+#toCenter {
+margin:auto;
+color:white;
+}
+.searchbutton {
+color: #757070;
+background-color: #BAB7BD;
+border-color: #000000;
+}
+
+.searchbutton:hover,
+.searchbutton:focus,
+.searchbutton:active,
+.searchbutton.active,
+.open .dropdown-toggle.searchbutton {
+color: #757070;
+background-color: #3E3B42;
+border-color: #000000;
+}
+
+.searchbutton:active,
+.searchbutton.active,
+.open .dropdown-toggle.searchbutton {
+background-image: none;
+}
+
+.searchbutton.disabled,
+.searchbutton[disabled],
+fieldset[disabled] .searchbutton,
+.searchbutton.disabled:hover,
+.searchbutton[disabled]:hover,
+fieldset[disabled] .searchbutton:hover,
+.searchbutton.disabled:focus,
+.searchbutton[disabled]:focus,
+fieldset[disabled] .searchbutton:focus,
+.searchbutton.disabled:active,
+.searchbutton[disabled]:active,
+fieldset[disabled] .searchbutton:active,
+.searchbutton.disabled.active,
+.searchbutton[disabled].active,
+fieldset[disabled] .searchbutton.active {
+background-color: #BAB7BD;
+border-color: #000000;
+}
+
+.searchbutton .badge {
+color: #BAB7BD;
+background-color: #757070;
+}
+
+input[type="text"]{
+background-color:#595959;
+color:white;
+}
+
 @media screen and (max-width: 500px) {
   div{width:70%;}
 }

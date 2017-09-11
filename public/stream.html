@@ -3,13 +3,14 @@
   <title>
       Meenakshi Movies!
   </title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script>
 
-var cURL = window.location.search;
-var finalMagnet = cURL.replace('?magnet=','');
+ var cURL = window.location.search;
+ var finalMagnet = cURL.replace('?magnet=','');
 
-var streamLink = 'http://localhost:1337/streamMagnet/' + finalMagnet;
+ var streamLink = 'http://localhost:1337/streamMagnet/' + finalMagnet;
 
 var getVideo = new Promise((resolve, reject) => {
   console.log("start getvideo");
@@ -21,9 +22,6 @@ var getVideo = new Promise((resolve, reject) => {
    reject("error: "+response.responseText);
   });
 });
-
-
-
 
 $(function() {
    getVideo.then(function(videoList) {
@@ -62,7 +60,7 @@ function closeStreamView() {
 </script>
 </head>
 
-<body bgcolor="black">
+<body background="assets/grey.png">
 
   <div id="show-video">
     <img alt="close-button" class="close-btn" src="assets/ic_close_white_24px.svg" onclick="closeStreamView()"/>
@@ -176,4 +174,21 @@ function closeStreamView() {
     }
   </style>
 </footer>
+
+<center>
+  <img alt="close-button" class="close-btn" src="assets/ic_close_white_24px.svg" onclick="closeStreamView()"/>
+
+<div id="movie">
+<video style="center" src="" height="500px" width="500px" id="myVideo" controls autoplay></video>
+<br><br>
+<h3>Please wait a few seconds for the video to stream <3</h3>
+<h4>Press the X button in the corner to quit stream</h4>
+</div>
+</center>
+<script>
+var vid = document.getElementById("myVideo");
+        vid.src = streamLink;
+        vid.load();
+</script>
+</body>
 </html>
